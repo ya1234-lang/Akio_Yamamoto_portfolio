@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="課題認識">課題認識</h1>
+<ul>
+<li>情報収集の効率化: 日々大量に発表されるAI/LLM分野の論文に対し、読解・分析にかかる時間的コストの削減。</li>
+<li>文脈の理解: 章を跨いだ議論や、論文特有の複雑な構造を効率的に把握するための手段の必要性。
+<br><br></li>
+</ul>
+<h1 id="プロジェクト概要">プロジェクト概要</h1>
+<ul>
+<li>本アプリは、ローカルLLMとRAGを活用した、論文の要約および質疑応答を支援するWEBアプリケーションです。<br>
+実務における**「機密情報の漏洩防止」および「ランニングコストの削減」**を前提とし、外部APIに依存せず完全ローカル環境で動作する設計を行いました。
+<img src="main1.png" alt="alt text">
+<img src="main2.png" alt="alt text">
+<br><br></li>
+</ul>
+<h1 id="想定ユースケース">想定ユースケース</h1>
+<ul>
+<li><strong>技術リサーチの効率化:</strong> AI/LLM分野の最新論文（英語・長文）の要約を把握し、読むべき論文の選別時間を削減したい研究者・エンジニア。</li>
+<li><strong>論文の深掘り・疑問解消:</strong> 論文の特定のリサーチ疑問（例：「この手法の評価指標は何か？」など）について、対話形式で情報を抽出・検証したい方。
+<br><br></li>
+</ul>
+<h1 id="技術構成">技術構成</h1>
+<ul>
+<li>Next.js
+<ul>
+<li>ファイルベースルーティングによる直感的なインポートと、型安全なコンポーネント開発のため選択しました。</li>
+</ul>
+</li>
+<li>Python, FastAPI
+<ul>
+<li>Pydanticを用いた堅牢なデータバリデーション、および非同期処理による高速なAPI通信のため選択しました。</li>
+</ul>
+</li>
+<li>sqlite3
+<ul>
+<li>ローカル環境で完結し、軽量かつ追加のサーバー構築が不要であり、FTS機能のBM25を利用するため選択しました。</li>
+</ul>
+</li>
+<li>Local LLM
+<ul>
+<li>Qwen2.5:3b / Ollama：CPU環境下でのレスポンス速度と推論精度の最適バランス
+<br><br></li>
+</ul>
+</li>
+</ul>
+<h1 id="設計判断">設計判断</h1>
+<ul>
+<li>本アプリでは、RAGの本質的な仕組み（データの前処理、検索ロジック、プロンプト制御）を深く理解するため、LangChainなどの既存フレームワークをあえて使用せず、ネイティブなPythonコードで実装しました。</li>
+</ul>
+<ol>
+<li>ハイブリッド検索と疑似Reranking
+<ul>
+<li>sqlite3のBM25によるキーワード検索と、コサイン類似度による文脈検索を組み合わせ、RRFアルゴリズムにてランキングを統合。情報検索を低コストで実現しました。
+<br><br></li>
+</ul>
+</li>
+<li>CPU環境におけるレスポンス速度の最適化（事前要約メタデータ）
+<ul>
+<li>ローカルCPU環境ではLLMの推論（特にチャット時）に時間がかかるという課題に対し、「PDF登録時に段落ごとの要約をメタデータとして作成・保存しておく」アプローチを採用しました。これにより、チャット時の入力トークン数を大幅に削減し、ユーザーの体感待ち時間を低減させました。
+<br><br></li>
+</ul>
+</li>
+<li>トークン制限の回避（逐次処理による長文要約）
+<ul>
+<li>Map-ReduceとRefineの二つの選択肢がありました。Map-Reduceでは要約対象を分割して最後に統合することから全体的なトークンの削減はできませんし、要約同氏を統合することで内容の繋がりを失ってしまうリスクが考えられます。一方Refineでは要約と次の段落とを要約するため文書の繋がりを欠落しにくく入出力のトークン数を制限することができました。
+<br><br></li>
+</ul>
+</li>
+</ol>
+<h1 id="システム構成図">システム構成図</h1>
+<p><img src="flow_image.png" alt="alt text">
+<br><br></p>
+<h1 id="構成機能">構成・機能</h1>
+<ul>
+<li><strong>論文PDFアップロード機能:</strong> テキストPDFをアップロードし、自動でチャンキング・要約・DB登録を行う。</li>
+<li><strong>対話型チャットボットUI:</strong> 自然言語で質疑応答ができるチャット画面。
+<br><br></li>
+</ul>
+<h1 id="開発中に得た学び">開発中に得た学び</h1>
+<ul>
+<li>LLM頼りではなく、前処理・検索・プロンプト構成の各工程における手法の具体性を追求する重要性を実感しました。</li>
+<li>既存フレームワークを使わず実装することで、ブラックボックス化を防ぎ、トラブルシューティング能力が向上しました。</li>
+<li>スペック制限（CPUのみ）という制約を、アーキテクチャ上の工夫で解決する設計思考を習得しました。
+<br><br></li>
+</ul>
+<h1 id="今後追加したい機能">今後追加したい機能</h1>
+<ul>
+<li>数式・図・画像のマルチモーダル抽出</li>
+<li>自動評価スクリプトによるRAG精度の定量的測定</li>
+<li>GPU活用による更なるレイテンシの極小化</li>
+<li>画像PDF処理（現在はテキストPDFのみ対応）</li>
+</ul>
+
+</body>
+</html>
