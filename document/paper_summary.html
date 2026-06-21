@@ -375,8 +375,8 @@ code {
 <ul>
 <li>本アプリは、ローカルLLMとRAGを活用した、論文の要約および質疑応答を支援するWEBアプリケーションです。<br>
 実務における**「機密情報の漏洩防止」および「ランニングコストの削減」**を前提とし、外部APIに依存せず完全ローカル環境で動作する設計を行いました。
-<img src="../images/paper_summary_main1.png" alt="alt text">
-<img src="../images/paper_summary_main2.png" alt="alt text">
+<img src="paper_summary_main1.png" alt="alt text">
+<img src="paper_summary_main2.png" alt="alt text">
 <br><br></li>
 </ul>
 <h1 id="想定ユースケース">想定ユースケース</h1>
@@ -404,8 +404,26 @@ code {
 </li>
 <li>Local LLM
 <ul>
-<li>Qwen2.5:3b / Ollama：CPU環境下でのレスポンス速度と推論精度の最適バランス
+<li>Qwen2.5:3b / Ollama：CPU環境下でのレスポンス速度と推論精度の最適バランス</li>
+</ul>
+</li>
+<li>埋め込みモデル
+<ul>
+<li>mxbai-embed-large
+<ul>
+<li>日本語を含む多言語テキストにも対応しているため</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>rerankモデル
+<ul>
+<li>ms-marco-MiniLM-L6-v2
+<ul>
+<li>処理速度のバランスに優れ、軽量であるため
 <br><br></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -434,7 +452,7 @@ code {
 </li>
 </ol>
 <h1 id="システム構成図">システム構成図</h1>
-<p><img src="../images/paper_summary_flow.png" alt="alt text">
+<p><img src="paper_summary_flow.png" alt="alt text">
 <br><br></p>
 <h1 id="構成機能">構成・機能</h1>
 <ul>
@@ -452,10 +470,92 @@ code {
 <h1 id="今後追加したい機能">今後追加したい機能</h1>
 <ul>
 <li>数式・図・画像のマルチモーダル抽出</li>
-<li>自動評価スクリプトによるRAG精度の定量的測定</li>
 <li>GPU活用による更なるレイテンシの極小化</li>
 <li>画像PDF処理（現在はテキストPDFのみ対応）</li>
+<li>成功と失敗のログをDBに蓄積し学習データを集める</li>
+<li>キャッシュRAGでトークン節約処理の追加
+<br><br></li>
 </ul>
+<h1 id="評価について">評価について</h1>
+<p>自作評価データセットを元にハイブリッド検索の検索性能の「評価」と「考察」になります。</p>
+<h2 id="評価環境">評価環境</h2>
+<p>評価データセット：qwen3:1.7bを用いて生成
+データセットの評価に使用したモデル：chatgpt（無料版）
+質問数：日本語102, 英語100
+評価指標：Recall@20,10,5,3,1</p>
+<h2 id="精度改善したこと">精度改善したこと</h2>
+<h3 id="1回目">1回目</h3>
+<ul>
+<li>初期：実装したそのままのハイブリッド検索で試しました。</li>
+<li>評価結果：@5 2%,@3 0%,@1 0%という精度でした。</li>
+<li>考察：質問文をBM25で入力してもほとんどヒットしなかったのが原因だと考えます。BM25のヒットがないということはコサイン類似度のみでの検索になるため意味検索のみでは難しいようです。</li>
+</ul>
+<h3 id="2回目">2回目</h3>
+<ul>
+<li>改善点：質問からキーワードをLLMで抽出する処理を追加しました。</li>
+<li>評価結果：@5 29%,@3 24%,@1 20%に向上しました。</li>
+<li>考察：BM25では検索文字列でチャンクを対象に一致度を算出するためノイズとなるチャンクにない単語が含まれているとヒットしません。これを改善するために全文検索ではなく抽出したキーワードで検索することでヒット件数が増えたことが精度向上の要因と考えます。</li>
+</ul>
+<h3 id="3回目">3回目</h3>
+<ul>
+<li>改善点：質問を英語クエリで入力することを試しました。</li>
+<li>評価結果：英語クエリで@1 35%, @3 41%, @5 49%, @10 60%, @20 71%を達成</li>
+<li>考察：当初はBM25が論文構成（専門用語や技術用語）との相性が悪いのかと考えていましたが、そうではなかったことがわかりました。処理の中で日本語質問をキーワード抽出→英語翻訳で入力クエリとしていたがここで本来あるべき用語などが分解されてしまい適切な文字列検索がなされていなかったのが主な原因であったことが判明しました。</li>
+</ul>
+<h3 id="4回目">4回目</h3>
+<ul>
+<li>改善点：rerankingを導入しました。</li>
+<li>評価結果：英語クエリで@1 55%, @3 61%, @5 65%, @10 68%, @20 71%を達成</li>
+<li>考察：数値から明らかに改善していることがわかります。いくつかノーマルランクの時点でtop1がrerankによりtop4に下がっていた誤評価はあれど全体的な数値の向上があるためrerankの導入をしました。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Recall@</th>
+<th style="text-align:center">1回目</th>
+<th style="text-align:center">2回目</th>
+<th style="text-align:center">3回目</th>
+<th style="text-align:center">4回目</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>20</strong></td>
+<td style="text-align:center">---</td>
+<td style="text-align:center">---</td>
+<td style="text-align:center">71%</td>
+<td style="text-align:center">71%</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>10</strong></td>
+<td style="text-align:center">---</td>
+<td style="text-align:center">---</td>
+<td style="text-align:center">60%</td>
+<td style="text-align:center">68%</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>5</strong></td>
+<td style="text-align:center">2%</td>
+<td style="text-align:center">29%</td>
+<td style="text-align:center">49%</td>
+<td style="text-align:center">65%</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>3</strong></td>
+<td style="text-align:center">0%</td>
+<td style="text-align:center">24%</td>
+<td style="text-align:center">41%</td>
+<td style="text-align:center">61%</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>1</strong></td>
+<td style="text-align:center">0%</td>
+<td style="text-align:center">20%</td>
+<td style="text-align:center">35%</td>
+<td style="text-align:center">55%</td>
+</tr>
+</tbody>
+</table>
 
 </body>
 </html>
