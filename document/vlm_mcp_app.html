@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="成果物野菜画像分析アプリ">成果物：野菜画像分析アプリ</h1>
+<h2 id="本取り組みの位置付け">本取り組みの位置付け</h2>
+<p>今回の取り組みでは、画像認識を目的としてCNNおよびVLMの
+モデル学習・検証を行いました。</p>
+<p>主な成果物は以下の2点です。</p>
+<ul>
+<li>CNN：ファインチューニングによる画像分類モデルの作成</li>
+<li>VLM：LoRAによる追加学習および推論性能の検証</li>
+</ul>
+<p>また、学習したモデルを実際のアプリケーション上で利用し、
+CNNとVLMを組み合わせた画像認識処理を検証しました。</p>
+<p>そのため、本ドキュメントではアプリケーションの実装そのものよりも、
+「なぜこのモデルを選択したのか」「どのように学習したのか」
+「学習によってどのような結果が得られたのか」
+「どの構成で推論できたのか」といったモデル学習・検証を中心に記載します。</p>
+<h2 id="技術構成">技術構成</h2>
+<ul>
+<li>Python
+<ul>
+<li>streamlit</li>
+<li>requests</li>
+<li>BeautifulSoup</li>
+</ul>
+</li>
+<li>fastmpc</li>
+<li>CNN(ReaNet, VGG)</li>
+<li>VLM(Qwen2.5-vl-3b-instruct)</li>
+<li>LLM(Qwen3:1.7b)</li>
+</ul>
+<h2 id="1-cnnタスク">1. CNNタスク</h2>
+<p><strong>検証モデル</strong>：ResNet, VGG
+<strong>学習条件</strong>
+<strong>画像枚数</strong> : 学習画像:750枚, 検証画像 750枚
+<strong>画像サイズ</strong> : 224x224
+<strong>EPOCH</strong> : 100</p>
+<h3 id="11-test結果">1.1 test結果</h3>
+<p><strong>学習条件</strong>
+<strong>画像サイズ</strong> : 224x224
+<strong>画像枚数</strong> : 3000枚(1クラス200枚ずつ)</p>
+<p><strong>モデル名</strong>：ResNet18</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Class</th>
+<th style="text-align:center">precision</th>
+<th style="text-align:center">recall</th>
+<th style="text-align:center">f1-score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Bean</strong></td>
+<td style="text-align:center">0.91</td>
+<td style="text-align:center">0.80</td>
+<td style="text-align:center">0.85</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Bitter_Gourd</strong></td>
+<td style="text-align:center">0.91</td>
+<td style="text-align:center">0.91</td>
+<td style="text-align:center">0.91</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Bottle_Gourd</strong></td>
+<td style="text-align:center">0.85</td>
+<td style="text-align:center">0.95</td>
+<td style="text-align:center">0.90</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Brinjal</strong></td>
+<td style="text-align:center">0.85</td>
+<td style="text-align:center">0.83</td>
+<td style="text-align:center">0.84</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Broccoli</strong></td>
+<td style="text-align:center">0.85</td>
+<td style="text-align:center">0.90</td>
+<td style="text-align:center">0.87</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Cabbage</strong></td>
+<td style="text-align:center">0.78</td>
+<td style="text-align:center">0.85</td>
+<td style="text-align:center">0.82</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Capsicum</strong></td>
+<td style="text-align:center">0.95</td>
+<td style="text-align:center">0.93</td>
+<td style="text-align:center">0.94</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Carrot</strong></td>
+<td style="text-align:center">0.98</td>
+<td style="text-align:center">0.99</td>
+<td style="text-align:center">0.99</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Cauliflower</strong></td>
+<td style="text-align:center">0.87</td>
+<td style="text-align:center">0.83</td>
+<td style="text-align:center">0.85</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Cucumber</strong></td>
+<td style="text-align:center">0.82</td>
+<td style="text-align:center">0.89</td>
+<td style="text-align:center">0.85</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Papaiya</strong></td>
+<td style="text-align:center">0.88</td>
+<td style="text-align:center">0.88</td>
+<td style="text-align:center">0.88</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Potato</strong></td>
+<td style="text-align:center">0.92</td>
+<td style="text-align:center">0.97</td>
+<td style="text-align:center">0.95</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Pumpkin</strong></td>
+<td style="text-align:center">0.87</td>
+<td style="text-align:center">0.89</td>
+<td style="text-align:center">0.88</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Radish</strong></td>
+<td style="text-align:center">0.97</td>
+<td style="text-align:center">0.94</td>
+<td style="text-align:center">0.95</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Tomato</strong></td>
+<td style="text-align:center">0.90</td>
+<td style="text-align:center">0.75</td>
+<td style="text-align:center">0.82</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>accuracy</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><strong>0.89</strong></td>
+</tr>
+</tbody>
+</table>
+<p><img src="matrix/resnet18_confusion_matrix.png" alt="alt text"></p>
+<p><strong>モデル名</strong>：ResNet101</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Class</th>
+<th style="text-align:center">precision</th>
+<th style="text-align:center">recall</th>
+<th style="text-align:center">f1-score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Bean</strong></td>
+<td style="text-align:center">0.55</td>
+<td style="text-align:center">0.48</td>
+<td style="text-align:center">0.51</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Bitter_Gourd</strong></td>
+<td style="text-align:center">0.63</td>
+<td style="text-align:center">0.56</td>
+<td style="text-align:center">0.59</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Bottle_Gourd</strong></td>
+<td style="text-align:center">0.64</td>
+<td style="text-align:center">0.58</td>
+<td style="text-align:center">0.61</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Brinjal</strong></td>
+<td style="text-align:center">0.42</td>
+<td style="text-align:center">0.49</td>
+<td style="text-align:center">0.46</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Broccoli</strong></td>
+<td style="text-align:center">0.63</td>
+<td style="text-align:center">0.72</td>
+<td style="text-align:center">0.67</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Cabbage</strong></td>
+<td style="text-align:center">0.57</td>
+<td style="text-align:center">0.60</td>
+<td style="text-align:center">0.58</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Capsicum</strong></td>
+<td style="text-align:center">0.87</td>
+<td style="text-align:center">0.78</td>
+<td style="text-align:center">0.82</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Carrot</strong></td>
+<td style="text-align:center">0.93</td>
+<td style="text-align:center">0.93</td>
+<td style="text-align:center">0.93</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Cauliflower</strong></td>
+<td style="text-align:center">0.51</td>
+<td style="text-align:center">0.61</td>
+<td style="text-align:center">0.56</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Cucumber</strong></td>
+<td style="text-align:center">0.48</td>
+<td style="text-align:center">0.42</td>
+<td style="text-align:center">0.45</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Papaiya</strong></td>
+<td style="text-align:center">0.63</td>
+<td style="text-align:center">0.83</td>
+<td style="text-align:center">0.72</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Potato</strong></td>
+<td style="text-align:center">0.76</td>
+<td style="text-align:center">0.78</td>
+<td style="text-align:center">0.77</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Pumpkin</strong></td>
+<td style="text-align:center">0.76</td>
+<td style="text-align:center">0.66</td>
+<td style="text-align:center">0.71</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Radish</strong></td>
+<td style="text-align:center">0.72</td>
+<td style="text-align:center">0.70</td>
+<td style="text-align:center">0.71</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Tomato</strong></td>
+<td style="text-align:center">0.60</td>
+<td style="text-align:center">0.46</td>
+<td style="text-align:center">0.52</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>accuracy</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><strong>0.64</strong></td>
+</tr>
+</tbody>
+</table>
+<p><img src="matrix/resnet101_confusion_matrix.png" alt="alt text"></p>
+<p><strong>モデル名</strong>：VGG11</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Class</th>
+<th style="text-align:center">precision</th>
+<th style="text-align:center">recall</th>
+<th style="text-align:center">f1-score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Bean</strong></td>
+<td style="text-align:center">0.55</td>
+<td style="text-align:center">0.59</td>
+<td style="text-align:center">0.56</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Bitter_Gourd</strong></td>
+<td style="text-align:center">0.75</td>
+<td style="text-align:center">0.79</td>
+<td style="text-align:center">0.77</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Bottle_Gourd</strong></td>
+<td style="text-align:center">0.69</td>
+<td style="text-align:center">0.79</td>
+<td style="text-align:center">0.74</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Brinjal</strong></td>
+<td style="text-align:center">0.74</td>
+<td style="text-align:center">0.64</td>
+<td style="text-align:center">0.68</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Broccoli</strong></td>
+<td style="text-align:center">0.69</td>
+<td style="text-align:center">0.80</td>
+<td style="text-align:center">0.74</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Cabbage</strong></td>
+<td style="text-align:center">0.79</td>
+<td style="text-align:center">0.54</td>
+<td style="text-align:center">0.64</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Capsicum</strong></td>
+<td style="text-align:center">0.91</td>
+<td style="text-align:center">0.81</td>
+<td style="text-align:center">0.86</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Carrot</strong></td>
+<td style="text-align:center">0.88</td>
+<td style="text-align:center">0.91</td>
+<td style="text-align:center">0.89</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Cauliflower</strong></td>
+<td style="text-align:center">0.78</td>
+<td style="text-align:center">0.59</td>
+<td style="text-align:center">0.67</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Cucumber</strong></td>
+<td style="text-align:center">0.67</td>
+<td style="text-align:center">0.68</td>
+<td style="text-align:center">0.67</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Papaiya</strong></td>
+<td style="text-align:center">0.80</td>
+<td style="text-align:center">0.67</td>
+<td style="text-align:center">0.73</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Potato</strong></td>
+<td style="text-align:center">0.92</td>
+<td style="text-align:center">0.97</td>
+<td style="text-align:center">0.95</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Pumpkin</strong></td>
+<td style="text-align:center">0.68</td>
+<td style="text-align:center">0.67</td>
+<td style="text-align:center">0.68</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Radish</strong></td>
+<td style="text-align:center">0.75</td>
+<td style="text-align:center">0.80</td>
+<td style="text-align:center">0.77</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Tomato</strong></td>
+<td style="text-align:center">0.69</td>
+<td style="text-align:center">0.65</td>
+<td style="text-align:center">0.67</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>accuracy</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><strong>0.72</strong></td>
+</tr>
+</tbody>
+</table>
+<p><img src="matrix/vgg11_confusion_matrix.png" alt="alt text"></p>
+<p><strong>モデル名</strong>：VGG19</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Class</th>
+<th style="text-align:center">precision</th>
+<th style="text-align:center">recall</th>
+<th style="text-align:center">f1-score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Bean</strong></td>
+<td style="text-align:center">0.67</td>
+<td style="text-align:center">0.59</td>
+<td style="text-align:center">0.63</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Bitter_Gourd</strong></td>
+<td style="text-align:center">0.82</td>
+<td style="text-align:center">0.71</td>
+<td style="text-align:center">0.76</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Bottle_Gourd</strong></td>
+<td style="text-align:center">0.69</td>
+<td style="text-align:center">0.88</td>
+<td style="text-align:center">0.77</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Brinjal</strong></td>
+<td style="text-align:center">0.73</td>
+<td style="text-align:center">0.66</td>
+<td style="text-align:center">0.69</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Broccoli</strong></td>
+<td style="text-align:center">0.76</td>
+<td style="text-align:center">0.84</td>
+<td style="text-align:center">0.80</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Cabbage</strong></td>
+<td style="text-align:center">0.55</td>
+<td style="text-align:center">0.51</td>
+<td style="text-align:center">0.53</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Capsicum</strong></td>
+<td style="text-align:center">0.95</td>
+<td style="text-align:center">0.89</td>
+<td style="text-align:center">0.92</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Carrot</strong></td>
+<td style="text-align:center">0.90</td>
+<td style="text-align:center">0.92</td>
+<td style="text-align:center">0.91</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Cauliflower</strong></td>
+<td style="text-align:center">0.67</td>
+<td style="text-align:center">0.68</td>
+<td style="text-align:center">0.67</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Cucumber</strong></td>
+<td style="text-align:center">0.72</td>
+<td style="text-align:center">0.72</td>
+<td style="text-align:center">0.72</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Papaiya</strong></td>
+<td style="text-align:center">0.81</td>
+<td style="text-align:center">0.71</td>
+<td style="text-align:center">0.76</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Potato</strong></td>
+<td style="text-align:center">0.81</td>
+<td style="text-align:center">0.81</td>
+<td style="text-align:center">0.81</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Pumpkin</strong></td>
+<td style="text-align:center">0.61</td>
+<td style="text-align:center">0.64</td>
+<td style="text-align:center">0.62</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Radish</strong></td>
+<td style="text-align:center">0.74</td>
+<td style="text-align:center">0.89</td>
+<td style="text-align:center">0.81</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Tomato</strong></td>
+<td style="text-align:center">0.73</td>
+<td style="text-align:center">0.69</td>
+<td style="text-align:center">0.71</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>accuracy</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><strong>0.74</strong></td>
+</tr>
+</tbody>
+</table>
+<p><img src="matrix/vgg19_confusion_matrix.png" alt="alt text"></p>
+<h3 id="12-モデル比較分析">1.2 モデル比較分析</h3>
+<h4 id="121-特徴">1.2.1 特徴</h4>
+<p><strong>ResNet</strong>：特徴抽出前の入力特徴量を後段へ直接伝える残差接続を持つ。残差ブロックではConvやNormなどの処理によって入力特徴量に対する「変化量（残差）」を学習し、元の入力特徴量と足し合わせる。
+この構造により、深いネットワークでも勾配が入力側へ伝播（誤差を小さくするために、各層の重みをどの方向・どの程度変更すべきかという情報（勾配）が、出力側から入力側の各層へ伝わっていくこと）しやすくなり、学習を安定させやすい。極端に言えば、各層で特徴量を一から大きく変化させるのではなく、「元の特徴量から何をどの程度変化させればよいか」を学習できるため、深いネットワークの最適化がしやすくなる。</p>
+<p><strong>VGG</strong>：ConvやNorm、活性化関数などの一般的なCNNの処理を多数積み重ねる構成。層を深くすることでより複雑な特徴を抽出できる一方、深くなるほど学習条件の調整や計算コストが大きくなる。
+特にVGGはパラメータ数が多く、モデルサイズや学習・推論時の計算コストが大きくなりやすい。そのため、データセットの質や学習率、エポック数などの条件を適切に調整する必要があり、将来的にクラス数やデータ量が増えた場合の計算コストも考慮する必要がある。</p>
+<h4 id="13-まとめ">1.3 まとめ</h4>
+<p>ResNetとVGGを比較すると、「層数が多い＝必ず高性能」というわけではないことが分かる。</p>
+<p>ResNetは残差接続によって、元の特徴量を直接伝播させながら必要な変化量を学習できるため、深いネットワークでも勾配を伝播させやすく、学習を安定させやすい。そのため、VGGより層数が少ないResNetでも、十分に高い画像認識性能を得られる場合がある。</p>
+<p>これは「ResNetの方が少ない層で深く学習できる」というより、残差接続によって深いネットワークを効率的に最適化できるため、層数だけではモデルの性能を判断できないという点が重要である。</p>
+<p>また、それぞれのモデルにはさらに深い構成も存在するが、現在のデータセットは15クラスであり、現状では過度に高い表現力を持つモデルを使用しなくても画像分類が可能である。そのため、現時点では精度だけでなく、学習時間・推論時間・モデルサイズ・VRAM使用量なども考慮してモデルを選定する。</p>
+<p>将来的にクラス数やデータ量が増加し、より複雑な特徴の識別が必要になった場合には、ResNet101などのより深いモデルを含めて再評価し、必要な表現力と計算コストのバランスを考慮してモデルを変更することを想定する。</p>
+<h2 id="2-vlmタスク">2. VLMタスク</h2>
+<p><strong>検証モデル</strong>：Qwen3-VL-2B-Instruct, Qwen2.5-VL-3B-Instruct</p>
+<h3 id="21-学習条件">2.1 学習条件</h3>
+<p><strong>画像枚数</strong> : 学習データ:3000枚(特徴データ1500枚, 特徴なしデータ1500枚), 検証画像 160枚
+<strong>画像サイズ</strong> : 224x224
+<strong>EPOCH</strong> : 10</p>
+<h3 id="22-学習データ">2.2 学習データ</h3>
+<p><strong>対象クラス（入力プロンプト例）</strong></p>
+<pre class="hljs"><code><div>{
+    &quot;question&quot;: 
+
+        &quot;この写真の野菜は？
+
+        # 判定ルール
+        - 画像が【対象クラス（野菜・果物）】である場合：後述の「JSONフォーマット」に従い特徴を出力すること
+        - 画像が【対象クラス外】である場合：テキストで「クラス対象外」とだけ出力すること 
+        
+        # 制約
+        - 判定ルール以外の余計な前置きや後置きのテキストは一切出力しないこと
+        - 対象クラスの場合、必ず指定されたJSON構造を守り、余計な説明文章を出力しないこと
+        
+        # 出力フォーマット
+        {
+            &quot;color_main&quot;: &quot;主となる色（例：濃い緑、朱赤）&quot;,
+            &quot;color_sub_pattern&quot;: &quot;サブの色・グラデーション・模様（例：白の縦縞、斑点）&quot;,
+            &quot;shape_geometry&quot;: &quot;全体的な幾何学的形状（例：球形、円柱形）&quot;,
+            &quot;shape_aspect_ratio&quot;: &quot;アスペクト比・サイズ感・対称性（例：縦長 1:4）&quot;,
+            &quot;texture_surface&quot;: &quot;表面の質感・光沢（例：ツヤあり、マット、ザラザラ）&quot;,
+            &quot;texture_structure&quot;: &quot;表面の構造・凹凸・溝（例：イボあり、網目模様）&quot;,
+            &quot;anatomical_junction&quot;: &quot;ヘタ・茎・根などの接合部（例：星型のヘタ、切り口）&quot;,
+            &quot;anatomical_cross_section&quot;: &quot;断面・内部構造・葉の特徴（例：中心の種子配置、重なり）&quot;
+        }&quot;,
+    &quot;image&quot;: &quot;&lt;image_path&gt;&quot;,
+    &quot;answer&quot;:
+        {
+            &quot;color_main&quot;: &quot;くすんだ緑色&quot;,
+            &quot;color_sub_pattern&quot;: &quot;縁に暗い紫色のストライプ状の色彩&quot;,
+            &quot;shape_geometry&quot;: &quot;弓形の扁平体&quot;,
+            &quot;shape_aspect_ratio&quot;: &quot;縦長（長径が短径の約3.5倍）、曲面非対称&quot;,
+            &quot;texture_surface&quot;: &quot;ツヤがなく、やや粗い質感&quot;,
+            &quot;texture_structure&quot;: &quot;外周を囲む隆起した筋構造と微小なシワ&quot;,
+            &quot;anatomical_junction&quot;: &quot;先端（上部）が細くフック状に尖り、基部（下部）に梗の残り&quot;,
+            &quot;anatomical_cross_section&quot;: &quot;切断なし（一連のサヤとして閉じられた解剖学的構造）&quot;
+        }
+}
+</div></code></pre>
+<p><strong>想定出力例</strong></p>
+<pre class="hljs"><code><div>{'color_main': '淡い緑色', 'color_sub_pattern': '緑色の縦縞と白い部分のコントラスト', 'shape_geometry': '丸みのある球形', 'shape_aspect_ratio': '縦長（アスペクト比 1:2.5）、丸みのある形状', 'texture_surface': 'ツヤがあり、滑らかな質感', 'texture_structure': '微細な凹凸構造（縦縞）', 'anatomical_junction': '未露出の果柄（左側に小さな穴状の切れ目）', 'anatomical_cross_section': '未開果（カットされていない）'}
+</div></code></pre>
+<p><strong>対象外クラス（入力プロンプト例）</strong></p>
+<pre class="hljs"><code><div>{
+    &quot;question&quot;: &quot;
+        この写真の野菜は？
+        # 判定ルール
+        - 画像が【対象クラス（野菜・果物）】である場合：後述の「JSONフォーマット」に従い特徴を出力すること
+        - 画像が【対象クラス外】である場合：テキストで「クラス対象外」とだけ出力すること 
+        
+        # 制約
+        - 判定ルール以外の余計な前置きや後置きのテキストは一切出力しないこと
+        - 対象クラスの場合、必ず指定されたJSON構造を守り、余計な説明文章を出力しないこと
+        
+        # 出力フォーマット
+          {
+              &quot;color_main&quot;: &quot;主となる色（例：濃い緑、朱赤）&quot;,
+              &quot;color_sub_pattern&quot;: &quot;サブの色・グラデーション・模様（例：白の縦縞、斑点）&quot;,
+              &quot;shape_geometry&quot;: &quot;全体的な幾何学的形状（例：球形、円柱形）&quot;,
+              &quot;shape_aspect_ratio&quot;: &quot;アスペクト比・サイズ感・対称性（例：縦長 1:4）&quot;,
+              &quot;texture_surface&quot;: &quot;表面の質感・光沢（例：ツヤあり、マット、ザラザラ）&quot;,
+              &quot;texture_structure&quot;: &quot;表面の構造・凹凸・溝（例：イボあり、網目模様）&quot;,
+              &quot;anatomical_junction&quot;: &quot;ヘタ・茎・根などの接合部（例：星型のヘタ、切り口）&quot;,
+              &quot;anatomical_cross_section&quot;: &quot;断面・内部構造・葉の特徴（例：中心の種子配置、重なり）&quot;
+          }&quot;,
+    &quot;image&quot;: &quot;&lt;image_path&gt;&quot;,
+    &quot;answer&quot;: &quot;クラス対象外です。&quot;
+}
+</div></code></pre>
+<p><strong>想定出力例</strong></p>
+<pre class="hljs"><code><div>クラス対象外です。
+</div></code></pre>
+<h3 id="23-やりたいこと">2.3 やりたいこと</h3>
+<p>対象クラスを認識し特徴抽出するもしくは対象外クラスの出力</p>
+<h3 id="24-loraする理由">2.4 Loraする理由</h3>
+<p>クラス対象外を認識させること</p>
+<h3 id="25-なぜやろうと思ったのか">2.5 なぜやろうと思ったのか</h3>
+<p>VLMの特徴は画像に映っている情報を分析して自然言語で出力することに特化していることから画像に映っている特徴を分析し情報の抽出をするための役割とした。CNNの出力結果とVLMの出力結果を合わせてクラスの検証を行うためにはCNNが学習をしていないクラスの認識をVLMにも判断してもらうためにクラス対象外の出力をするために再学習が必要だった。</p>
+<h3 id="26-モデル比較分析">2.6 モデル比較分析</h3>
+<h4 id="261-qwen3-vl-2b-instruct">2.6.1 Qwen3-VL-2B-Instruct</h4>
+<ul>
+<li>QwenシリーズのVLMでLoRA学習を行った後にマージおよびGGUF変換（unslothのツールを使用）する際、「テキストモデル部分とビジョンエンコーダ部分のレイヤー構成やテンソル名の不整合」に起因するエラーが公式コミュニティやGitHub等で複数報告されており、LoRA学習後のモデルをGGUFへ変換して利用するという今回の目的に対して、変換時の問題を切り分けることが難しいと判断し、検証対象から外した。</li>
+</ul>
+<h4 id="262-qwen25-vl-3b-instruct">2.6.2 Qwen2.5-VL-3B-Instruct</h4>
+<p>LoRA学習時の量子化の有無、Merge後の推論、およびGGUF変換後の推論について検証した。</p>
+<table>
+<thead>
+<tr>
+<th>構成</th>
+<th>推論結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FP16 LoRA</td>
+<td>○</td>
+</tr>
+<tr>
+<td>FP4 LoRA</td>
+<td>○</td>
+</tr>
+<tr>
+<td>FP16 LoRA → FP16 Merge</td>
+<td>○</td>
+</tr>
+<tr>
+<td>FP4 LoRA → FP16 Merge</td>
+<td>○</td>
+</tr>
+<tr>
+<td>FP16 LoRA → FP16 Merge → FP4 GGUF</td>
+<td>×</td>
+</tr>
+<tr>
+<td>FP4 LoRA → FP16 Merge → FP4 GGUF</td>
+<td>×</td>
+</tr>
+<tr>
+<td>FP16 LoRA → FP16 Merge → FP5 GGUF</td>
+<td>×</td>
+</tr>
+<tr>
+<td>FP4 LoRA → FP16 Merge → FP5 GGUF</td>
+<td>×</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>FP16およびFP4でLoRA学習したモデルは、学習後の推論およびFP16へのMerge後の推論において正常な出力を確認できた。一方、Merge後のモデルをFP4またはFP5のGGUF形式へ変換した場合、LoRA学習時の精度にかかわらず推論結果が不適切となった。このことから、今回の検証環境ではLoRA学習およびMerge処理は正常に動作している一方、GGUF変換またはGGUFモデルを用いた推論処理に問題が存在する可能性があると仮説を立てた。</li>
+<li>まだ断定できないこと
+<ul>
+<li>GGUF形式そのものが原因</li>
+<li>FP4/FP5量子化そのものが原因</li>
+<li>モデル変換時に重み・構造が壊れた</li>
+</ul>
+</li>
+</ul>
+<h3 id="27-まとめ">2.7 まとめ</h3>
+<p>Qwen3-VL-2B-Instructは、VLM特有のモデル構造によりLoRA学習後のGGUF変換に関する問題が報告されており、今回の目的である「LoRA学習したVLMをGGUFへ変換して推論する」という検証を安定して行うことが難しいと判断した。</p>
+<p>一方、Qwen2.5-VL-3B-Instructでは、FP16・FP4のいずれでもLoRA学習およびMerge後の推論まで正常に実行できたため、少なくともLoRA学習とMergeの検証対象としては利用可能であることを確認できた。</p>
+<p>しかし、FP4およびFP5のGGUFへ変換した場合は、LoRA学習時の精度にかかわらず推論が正常に行えなかった。そのため、今回の検証では「LoRA学習 → Merge」までは正常に動作するものの、「Merge → GGUF → 推論」の段階で問題が発生するという結果が得られた。</p>
+<p>以上から、今回のモデル比較では、Qwen2.5-VL-3B-Instructの方がLoRA学習からMergeまでの検証を進めやすく、今回の目的に適したモデルであると判断した。一方、GGUF化については問題が残っており、今後はGGUF変換処理、量子化方式に切り分け検証する必要がある。</p>
+<h3 id="3-今後の課題">3. 今後の課題</h3>
+<ul>
+<li>CNNは、アプリケーションの利用を通じて蓄積した画像を学習データとして活用し、認識可能なクラスの拡張を予定している。クラス追加時には、まずLinear層のファインチューニングによる精度向上を検証し、それだけでは十分な精度が得られない場合は、全層を対象とした再学習を検討する。また、学習データの増加やクラス数の拡張に伴うモデル性能の変化を確認し、必要に応じてResNet101など、より大規模なモデルへの変更についても検証する。</li>
+<li>VLMは、GGUF変換後に想定した出力を得ることができなかったため、引き続き原因の切り分けと検証が必要である。現時点では、LoRA学習後の推論およびFP16へのMerge後の推論については正常な出力を確認しているため、GGUF変換またはGGUFモデルを用いた推論処理に着目して検証を進める。
+今後は、GGUFの仕組みや変換仕様について理解を深めるとともに、UnslothによるGGUF変換処理や変換前後のモデル構造、量子化条件および推論環境について確認し、問題が発生する要因を段階的に切り分ける。また、必要に応じて学習データやLoRAの学習条件についても再検証し、原因の特定とモデルの改善を進める。</li>
+</ul>
+
+</body>
+</html>
